@@ -135,7 +135,7 @@ export function renderScript(src, defer) {
  * @param  {String} options.id        ID for style tag
  * @return {String}                   Style HTML
  */
-export async function renderStyle({ registry, id = 'ssr-css', minify }) {
+export async function renderStyle({ registry, id = 'ssr-css-jss', minify }) {
   let css = registry.toString()
 
   // css might be undefined, e.g. after an error.
