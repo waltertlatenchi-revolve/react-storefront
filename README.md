@@ -74,6 +74,10 @@ yarn release
 
 ## Changelog
 
+### 6.73.0 [diff](https://github.com/moovweb/react-storefront/compare/v6.72.1...v6.73.0)
+
+- Allow requests of type `application/json` to be not be valid JSON. Requests of this type that contain unparsable JSON will now log a warning message rather than force the request to fail entirely.
+
 ### 6.72.1 [diff](https://github.com/moovweb/react-storefront/compare/v6.72.0...v6.72.1)
 
 - Fixed unhandled exceptions relating to service workers in Firefox and Safari.
