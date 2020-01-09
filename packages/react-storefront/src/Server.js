@@ -202,7 +202,6 @@ export default class Server {
           <body ${helmet.bodyAttributes.toString()}>
             ${await renderStyle({
               registry: sheetsRegistry,
-              id: 'ssr-css',
               minify: Boolean(amp)
             })}
             <noscript>

@@ -53,6 +53,9 @@ module.exports = class EdgeConfigFactory {
     })
 
     return {
+      // Note: this schema version is checked against the schema version in the outer edge config in console at build time.  
+      // If the two do not match, the build will fail to prevent ambiguity in how the outer edge will behave.
+      version: '4',
       backends: {
         moov: {
           custom_cache_keys,
