@@ -66,7 +66,7 @@ describe('Request', () => {
     const malformedJson = '{ foo: "bar" '
     global.requestBody = malformedJson
     global.env.headers = JSON.stringify({ 'content-type': 'application/json' })
-    expect(() => new Request().body).toEqual(malformedJson)
+    expect(new Request().body).toEqual(malformedJson)
   })
 
   it('should parse application/x-www-form-urlencoded', () => {
