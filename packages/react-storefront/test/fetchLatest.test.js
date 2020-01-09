@@ -40,5 +40,8 @@ describe('fetchLatest', () => {
     expect(await fetch()).toBe(true)
     expect(await fetch()).toBe(true)
   })
-})
 
+  it('should export StaleResponseError', () => {
+    expect(StaleResponseError).toBeDefined()
+  })
+})

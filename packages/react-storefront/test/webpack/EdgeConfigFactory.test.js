@@ -24,6 +24,14 @@ describe('EdgeConfigFactory', () => {
     })
   })
 
+  describe('version', () => {
+    it('should emit a version', () => {
+      const router = new Router().get('/', cacheHandler).get('/p/:id', cacheHandler)
+      const config = new EdgeConfigFactory(router).createConfig()
+      expect(config.version).not.toBeNull()
+    })
+  })
+
   describe('custom_cache_keys', () => {
     it('should generate custom cache keys for outer edge manager', () => {
       const router = new Router().get('/', cacheHandler).get('/p/:id', cacheHandler)
