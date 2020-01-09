@@ -77,8 +77,12 @@ yarn release
 ### 6.73.0 [diff](https://github.com/moovweb/react-storefront/compare/v6.72.2...v6.73.0)
 
 - Improved support for A/B testing. You can now use `fromOrigin` and `redirectTo` route handlers when running A/B tests. This is done by moving the outer edge routing logic to the moov backend in oem.json
-- This release requires you to install `react-storefront-edge` and update your `config/webpack/webpack.prod.edge.js` to:
+- This release requires you to install `react-storefront-edge`:
 
+````
+npm i --save-dev react-storefront-edge@^1.0.0
+```
+- and update your `config/webpack/webpack.prod.edge.js` to:
 ```js
 const edge = require('react-storefront-edge/webpack')
 const path = require('path')
@@ -86,7 +90,7 @@ const path = require('path')
 module.exports = edge(path.join(__dirname, '..', '..'), {
   router: 'src/routes.js'
 })
-```
+````
 
 ### 6.72.2 [diff](https://github.com/moovweb/react-storefront/compare/v6.72.1...v6.72.2)
 
