@@ -66,7 +66,8 @@ function parseBody(request) {
     try {
       return JSON.parse(body)
     } catch (e) {
-      throw new Error('could not parse request body as application/json: ' + e.message)
+      console.warn('could not parse request body as application/json: ' + e.message)
+      return body
     }
   } else if (contentTypeLowerCase === 'application/x-www-form-urlencoded') {
     return qs.parse(body)

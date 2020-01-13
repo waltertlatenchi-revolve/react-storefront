@@ -7,7 +7,7 @@ import { body, contentType } from './parseMultipartRequest.test'
 import headers from './headers'
 
 describe('Request', () => {
-  global.env = { 
+  global.env = {
     path: '/',
     host: 'localhost:80',
     headers: JSON.stringify({})
@@ -16,7 +16,9 @@ describe('Request', () => {
   it('should warn when you access pathname', () => {
     console.warn = jest.fn()
     expect(new Request().pathname).toBe('/')
-    expect(console.warn).toHaveBeenCalledWith('warning: request.pathname is deprecated and will be removed in a future version of react-storefront-moov-xdn')
+    expect(console.warn).toHaveBeenCalledWith(
+      'warning: request.pathname is deprecated and will be removed in a future version of react-storefront-moov-xdn'
+    )
   })
 
   it('should populate search', () => {
@@ -60,10 +62,11 @@ describe('Request', () => {
     expect(new Request().body).toEqual({ foo: 'bar' })
   })
 
-  it('should throw an error when parsing malformed json', () => {
-    global.requestBody = '{ foo: "bar" '
+  it('should return the original body when parsing malformed json', () => {
+    const malformedJson = '{ foo: "bar" '
+    global.requestBody = malformedJson
     global.env.headers = JSON.stringify({ 'content-type': 'application/json' })
-    expect(() => new Request().body).toThrowError()
+    expect(new Request().body).toEqual(malformedJson)
   })
 
   it('should parse application/x-www-form-urlencoded', () => {
