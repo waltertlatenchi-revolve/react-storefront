@@ -74,7 +74,11 @@ yarn release
 
 ## Changelog
 
-### 6.72.2
+### 6.72.3 [diff](https://github.com/moovweb/react-storefront/compare/v6.72.2...v6.72.3)
+
+- Fixed service worker bugs which caused cached responses to never be matched and/or used
+
+### 6.72.2 [diff](https://github.com/moovweb/react-storefront/compare/v6.72.1...v6.72.2)
 
 - Fixed issue with broken CSS after client-side navigation introduced in 6.71.1
 

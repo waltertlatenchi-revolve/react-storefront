@@ -72,7 +72,17 @@ function precacheLinks(response) {
     const matches = html.match(/href="([^"]+)"\sdata-rsf-prefetch/g)
     if (matches) {
       return Promise.all(
-        matches.map(match => match.match(/href="([^"]+)"/)[1]).map(path => cachePath({ path }))
+        matches
+          .map(match => match.match(/href="([^"]+)"/)[1])
+          .map(path => {
+            // Since React renders all amperstands as HTML entities (&amp;), we
+            // need to replace them with the '&' character for URL's
+            //
+            // We were not doing this before and caching incorrect paths, and
+            // the service worker could never find the correct responses to
+            // return for a given request.
+            cachePath({ path: path.replace(/&amp;/g, '&') })
+          })
       )
     }
     return Promise.resolve()
@@ -352,7 +362,7 @@ function isAmp(url) {
 function shouldServeHTMLFromCache(url, event) {
   return (
     '{{serveSSRFromCache}}' === 'true' ||
-    isAmp({ pathname: event.request.referrer }) ||
+    isAmp(new URL(event.request.referrer)) ||
     /\?source=pwa/.test(url.search) ||
     /(\?|&)powerlink/.test(url.search)
   )
