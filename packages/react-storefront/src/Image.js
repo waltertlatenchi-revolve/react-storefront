@@ -222,7 +222,12 @@ export default class Image extends Component {
           active={!loaded}
           onChange={this.lazyLoad}
           partialVisibility
-          offset={{ top: -lazyOffset, bottom: -lazyOffset }}
+          offset={{
+            top: -lazyOffset,
+            bottom: -lazyOffset,
+            left: -lazyOffset,
+            right: -lazyOffset
+          }}
         >
           {result}
         </VisibilitySensor>
