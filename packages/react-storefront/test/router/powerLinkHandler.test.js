@@ -39,7 +39,7 @@ describe('powerLinkHandler', () => {
         },
         response
       )
-      expect(request.sendResponse).toMatchSnapshot()
+      expect(request.sendResponse.mock.calls[0][0]).toMatchSnapshot()
     })
   })
 })

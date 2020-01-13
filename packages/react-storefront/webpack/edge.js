@@ -1,46 +1,9 @@
-const path = require('path')
-const { createAliases, createBabelLoader } = require('./common')
-const OEMConfigWriterPlugin = require('./plugins/oem-config-writer-plugin')
+console.error(
+  `\n` +
+    `Build Failed: react-storefront/webpack/edge has been removed.  Use react-storefront-edge/webpack instead.\n` +
+    `To add react-storefront-edge to your app run:\n\n` +
+    `npm i --save-dev react-storefront-edge@^1.0.0\n\n` +
+    `Then replace "react-storefront/webpack/edge" with "react-storefront-edge/webpack" in config/webpack.prod.edge.js.\n`
+)
 
-module.exports = function prod(
-  root,
-  { router = 'src/routes.js', alias = {}, envVariables = {} } = {}
-) {
-  const webpack = require(path.join(root, 'node_modules', 'webpack'))
-
-  return () => ({
-    name: 'edge',
-    entry: path.join(root, router),
-    context: root,
-    mode: 'production',
-    output: {
-      filename: 'routes.js',
-      path: path.join(root),
-      globalObject: 'global', // this is needed for the `window is not defined` JSONP related error
-      libraryTarget: 'commonjs2'
-    },
-    target: 'web',
-    module: {
-      rules: [createBabelLoader('server')]
-    },
-    resolve: {
-      alias: {
-        ...createAliases(root),
-        ...alias
-      }
-    },
-    plugins: [
-      new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1
-      }),
-      new webpack.DefinePlugin({
-        'process.env.MOOV_RUNTIME': JSON.stringify('server'),
-        'process.env.MOOV_ENV': JSON.stringify('prod'),
-        ...envVariables
-      }),
-      new OEMConfigWriterPlugin({
-        outputFile: path.join('build', 'oem.json')
-      })
-    ]
-  })
-}
+process.exit(1)

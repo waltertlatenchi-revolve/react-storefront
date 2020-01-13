@@ -1,11 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`powerLinkHandler powerLinkHandler should set service worker path in body 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      Object {
-        "body": "
+Object {
+  "body": "
     var links = Array.from(document.querySelectorAll('a[data-rsf-power-link]')).map(function(link) {
       var powerlink = link.getAttribute('href');
       powerlink += (powerlink.indexOf('?') === -1 ? '?' : '&') + 'powerlink'
@@ -21,15 +18,6 @@ exports[`powerLinkHandler powerLinkHandler should set service worker path in bod
     
     document.body.appendChild(el);
   ",
-        "htmlparsed": true,
-      },
-    ],
-  ],
-  "results": Array [
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-  ],
+  "htmlparsed": true,
 }
 `;

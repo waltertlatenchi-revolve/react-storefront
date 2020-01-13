@@ -19,15 +19,12 @@ export default function fromOrigin(backend = 'origin') {
   }
   const runOn = { server: true, client: false }
 
-  if (process.env.MOOV_ENV === 'development') {
-    // perfect proxy in development since we have no CDN
-    return proxyUpstream()
-  }
-
   return {
+    ...proxyUpstream(),
     type,
-    runOn,
     config: () => config,
+
+    // note as of react-storefront-edge@4.0.0, this is no longer used but is kept here for backwards compatibility
     transformPath: path => {
       return {
         type,
