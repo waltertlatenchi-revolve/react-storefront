@@ -74,7 +74,7 @@ yarn release
 
 ## Changelog
 
-### 6.73.1
+### 6.75.0 [diff](https://github.com/moovweb/react-storefront/compare/v6.74.1...v6.75.0)
 
 - Add support for `lazyOffset` on the `<Image />` component when horizontal scrolling
 
